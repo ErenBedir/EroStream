@@ -74,7 +74,6 @@ class _AuthForm extends StatefulWidget {
     required this.body,
     required this.label,
     required this.onSubmit,
-    this.hint,
     this.obscure = false,
     this.keyboard = TextInputType.text,
     this.extra,
@@ -83,7 +82,6 @@ class _AuthForm extends StatefulWidget {
   final String title;
   final String body;
   final String label;
-  final String? hint;
   final bool obscure;
   final TextInputType keyboard;
   final Future<void> Function(String value) onSubmit;
@@ -132,7 +130,7 @@ class _AuthFormState extends State<_AuthForm> {
             keyboardType: widget.keyboard,
             textInputAction: TextInputAction.done,
             onSubmitted: (_) => _go(),
-            decoration: InputDecoration(labelText: widget.label, hintText: widget.hint),
+            decoration: InputDecoration(labelText: widget.label),
           ),
           ListenableBuilder(listenable: tg, builder: (_, _) => ErrorLine(tg.lastError)),
           const SizedBox(height: Space.l),
