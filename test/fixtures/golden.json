@@ -1,0 +1,645 @@
+{
+ "parse": [
+  {
+   "in": "The.Last.of.Us.S01E05.1080p.WEB-DL.DDP5.1.H.264-TURG.mkv",
+   "out": {
+    "kind": "tv",
+    "show": "The Last of Us",
+    "s": 1,
+    "e": 5,
+    "e2": null
+   }
+  },
+  {
+   "in": "Breaking Bad S05E14 720p BluRay x264 [TR-EN].mkv",
+   "out": {
+    "kind": "tv",
+    "show": "Breaking Bad",
+    "s": 5,
+    "e": 14,
+    "e2": null
+   }
+  },
+  {
+   "in": "Severance.S02E01-02.2160p.ATVP.WEB-DL.DUAL.HEVC.mkv",
+   "out": {
+    "kind": "tv",
+    "show": "Severance",
+    "s": 2,
+    "e": 1,
+    "e2": 2
+   }
+  },
+  {
+   "in": "Dark.S0103.1080p.NF.WEB-DL.mkv",
+   "out": {
+    "kind": "tv",
+    "show": "Dark",
+    "s": 1,
+    "e": 3,
+    "e2": null
+   }
+  },
+  {
+   "in": "Friends 3x12 DVDRip.avi",
+   "out": {
+    "kind": "tv",
+    "show": "Friends",
+    "s": 3,
+    "e": 12,
+    "e2": null
+   }
+  },
+  {
+   "in": "Kurtlar Vadisi 1.Sezon 4.Bolum.mp4",
+   "out": {
+    "kind": "tv",
+    "show": "Kurtlar Vadisi",
+    "s": 1,
+    "e": 4,
+    "e2": null
+   }
+  },
+  {
+   "in": "Yalı Çapkını 41.BLM 1080p.mp4",
+   "out": {
+    "kind": "tv",
+    "show": "Yalı Çapkını",
+    "s": 1,
+    "e": 41,
+    "e2": null
+   }
+  },
+  {
+   "in": "Muhtesem Yuzyil 12. Bölüm HD.mp4",
+   "out": {
+    "kind": "tv",
+    "show": "Muhtesem Yuzyil",
+    "s": 1,
+    "e": 12,
+    "e2": null
+   }
+  },
+  {
+   "in": "Avrupa Yakasi - 108.mp4",
+   "out": {
+    "kind": "tv",
+    "show": "Avrupa Yakasi",
+    "s": 1,
+    "e": 108,
+    "e2": null
+   }
+  },
+  {
+   "in": "Gibi S02 BL03 1080p BluTV.mkv",
+   "out": {
+    "kind": "tv",
+    "show": "Gibi",
+    "s": 2,
+    "e": 3,
+    "e2": null
+   }
+  },
+  {
+   "in": "Kara Para Ask BL12.mp4",
+   "out": {
+    "kind": "tv",
+    "show": "Kara Para Ask",
+    "s": 1,
+    "e": 12,
+    "e2": null
+   }
+  },
+  {
+   "in": "Inception.2010.1080p.BluRay.x264.DUAL.TR-EN.mkv",
+   "out": {
+    "kind": "movie",
+    "title": "Inception",
+    "year": "2010"
+   }
+  },
+  {
+   "in": "Oppenheimer (2023) 2160p UHD HDR10 Atmos.mkv",
+   "out": {
+    "kind": "movie",
+    "title": "Oppenheimer",
+    "year": "2023"
+   }
+  },
+  {
+   "in": "Dune Part Two 2024 1080p WEB-DL TR Dublaj.mp4",
+   "out": {
+    "kind": "movie",
+    "title": "Dune Part Two",
+    "year": "2024"
+   }
+  },
+  {
+   "in": "1917.2019.720p.BluRay.mkv",
+   "out": {
+    "kind": "movie",
+    "title": "1917",
+    "year": "2019"
+   }
+  },
+  {
+   "in": "Blade Runner 2049 2017 1080p.mkv",
+   "out": {
+    "kind": "movie",
+    "title": "Blade Runner 2049",
+    "year": "2017"
+   }
+  },
+  {
+   "in": "Interstellar.2014.IMAX.1080p.AMZN.WEB-DL.mkv",
+   "out": {
+    "kind": "movie",
+    "title": "Interstellar",
+    "year": "2014"
+   }
+  },
+  {
+   "in": "[HDT] Ayla 2017 Yerli Film 1080p.mp4",
+   "out": {
+    "kind": "movie",
+    "title": "Ayla",
+    "year": "2017"
+   }
+  },
+  {
+   "in": "Recep Ivedik 6 (2019) 1080p WEB-DL.mp4",
+   "out": {
+    "kind": "movie",
+    "title": "Recep Ivedik 6",
+    "year": "2019"
+   }
+  },
+  {
+   "in": "The Office US S09E23 Finale 720p.mkv",
+   "out": {
+    "kind": "tv",
+    "show": "The Office US",
+    "s": 9,
+    "e": 23,
+    "e2": null
+   }
+  },
+  {
+   "in": "Chernobyl.S01E01.1.23.45.1080p.AMZN.WEB-DL.mkv",
+   "out": {
+    "kind": "tv",
+    "show": "Chernobyl",
+    "s": 1,
+    "e": 1,
+    "e2": null
+   }
+  },
+  {
+   "in": "Mammals - Memeli Canlilar -Karanlik- (2024) S01E02.mkv",
+   "out": {
+    "kind": "tv",
+    "show": "Mammals - Memeli Canlilar -Karanlik- (2024)",
+    "s": 1,
+    "e": 2,
+    "e2": null
+   }
+  },
+  {
+   "in": "Episode 07 Bir Zamanlar Cukurova.mp4",
+   "out": {
+    "kind": "other",
+    "title": "Episode 07 Bir Zamanlar Cukurova"
+   }
+  },
+  {
+   "in": "Cukurova E07 720p.mp4",
+   "out": {
+    "kind": "tv",
+    "show": "Cukurova",
+    "s": 1,
+    "e": 7,
+    "e2": null
+   }
+  },
+  {
+   "in": "random_home_video_final.mp4",
+   "out": {
+    "kind": "other",
+    "title": "random home video final"
+   }
+  },
+  {
+   "in": "Shogun.2024.S01E10.A.Dream.of.a.Dream.1080p.DSNP.WEB-DL.DDP5.1.H.264-NTb.mkv",
+   "out": {
+    "kind": "tv",
+    "show": "Shogun 2024",
+    "s": 1,
+    "e": 10,
+    "e2": null
+   }
+  },
+  {
+   "in": "Arka Sokaklar 650. Bölüm.mp4",
+   "out": {
+    "kind": "tv",
+    "show": "Arka Sokaklar",
+    "s": 1,
+    "e": 650,
+    "e2": null
+   }
+  },
+  {
+   "in": "Masumlar Apartmani 2.Sezon 15.Bolum 1080p.mp4",
+   "out": {
+    "kind": "tv",
+    "show": "Masumlar Apartmani",
+    "s": 2,
+    "e": 15,
+    "e2": null
+   }
+  },
+  {
+   "in": "Squid.Game.S02E07.MULTI.1080p.NF.WEB-DL.x265-KiNGS.mkv",
+   "out": {
+    "kind": "tv",
+    "show": "Squid Game",
+    "s": 2,
+    "e": 7,
+    "e2": null
+   }
+  },
+  {
+   "in": "The.Matrix.1999.REMASTERED.1080p.BluRay.x265.mkv",
+   "out": {
+    "kind": "movie",
+    "title": "The Matrix",
+    "year": "1999"
+   }
+  },
+  {
+   "in": "Gladiator II 2024 TRSUB 1080p WEBRip.mp4",
+   "out": {
+    "kind": "movie",
+    "title": "Gladiator II",
+    "year": "2024"
+   }
+  },
+  {
+   "in": "https://t.me/xyz/123 Ezel.S01E01.720p.mp4",
+   "out": {
+    "kind": "tv",
+    "show": "Ezel",
+    "s": 1,
+    "e": 1,
+    "e2": null
+   }
+  },
+  {
+   "in": "Leyla ile Mecnun 2.Sezon 5.Bolum - [archived by @kanal]-.mp4",
+   "out": {
+    "kind": "tv",
+    "show": "Leyla ile Mecnun",
+    "s": 2,
+    "e": 5,
+    "e2": null
+   }
+  },
+  {
+   "in": "Prestige 2006 1080p x264 Altyazili.mp4",
+   "out": {
+    "kind": "movie",
+    "title": "Prestige",
+    "year": "2006"
+   }
+  },
+  {
+   "in": "Sherlock.S04E03.The.Final.Problem.720p.mkv",
+   "out": {
+    "kind": "tv",
+    "show": "Sherlock",
+    "s": 4,
+    "e": 3,
+    "e2": null
+   }
+  }
+ ],
+ "episode_only": [
+  {
+   "in": "S01E05 1080p.mkv",
+   "out": [
+    1,
+    5
+   ]
+  },
+  {
+   "in": "1.Sezon 3.Bölüm.mp4",
+   "out": [
+    1,
+    3
+   ]
+  },
+  {
+   "in": "12. Bölüm.mp4",
+   "out": [
+    1,
+    12
+   ]
+  },
+  {
+   "in": "Bolum 7.mp4",
+   "out": [
+    1,
+    7
+   ]
+  },
+  {
+   "in": "E09.mkv",
+   "out": [
+    1,
+    9
+   ]
+  },
+  {
+   "in": "BL14.mp4",
+   "out": [
+    1,
+    14
+   ]
+  },
+  {
+   "in": "2.Sezon E04.mp4",
+   "out": [
+    2,
+    4
+   ]
+  },
+  {
+   "in": "final.mp4",
+   "out": null
+  },
+  {
+   "in": "Kurulus Osman 164.Bolum.mp4",
+   "out": [
+    1,
+    164
+   ]
+  }
+ ],
+ "label": [
+  {
+   "in": "The.Last.of.Us.S01E05.1080p.WEB-DL.DDP5.1.H.264-TURG.mkv",
+   "out": "1080p WEB TURG"
+  },
+  {
+   "in": "Breaking Bad S05E14 720p BluRay x264 [TR-EN].mkv",
+   "out": "720p BluRay DUAL"
+  },
+  {
+   "in": "Severance.S02E01-02.2160p.ATVP.WEB-DL.DUAL.HEVC.mkv",
+   "out": "4K AppleTV HEVC DUAL"
+  },
+  {
+   "in": "Dark.S0103.1080p.NF.WEB-DL.mkv",
+   "out": "1080p NF"
+  },
+  {
+   "in": "Friends 3x12 DVDRip.avi",
+   "out": "DVD"
+  },
+  {
+   "in": "Kurtlar Vadisi 1.Sezon 4.Bolum.mp4",
+   "out": "Surum"
+  },
+  {
+   "in": "Yalı Çapkını 41.BLM 1080p.mp4",
+   "out": "1080p"
+  },
+  {
+   "in": "Muhtesem Yuzyil 12. Bölüm HD.mp4",
+   "out": "Surum"
+  },
+  {
+   "in": "Avrupa Yakasi - 108.mp4",
+   "out": "Surum"
+  },
+  {
+   "in": "Gibi S02 BL03 1080p BluTV.mkv",
+   "out": "1080p BluTV"
+  },
+  {
+   "in": "Kara Para Ask BL12.mp4",
+   "out": "Surum"
+  },
+  {
+   "in": "Inception.2010.1080p.BluRay.x264.DUAL.TR-EN.mkv",
+   "out": "1080p BluRay DUAL"
+  },
+  {
+   "in": "Oppenheimer (2023) 2160p UHD HDR10 Atmos.mkv",
+   "out": "4K Atmos"
+  },
+  {
+   "in": "Dune Part Two 2024 1080p WEB-DL TR Dublaj.mp4",
+   "out": "1080p WEB TR Dublaj"
+  },
+  {
+   "in": "1917.2019.720p.BluRay.mkv",
+   "out": "720p BluRay"
+  },
+  {
+   "in": "Blade Runner 2049 2017 1080p.mkv",
+   "out": "1080p"
+  },
+  {
+   "in": "Interstellar.2014.IMAX.1080p.AMZN.WEB-DL.mkv",
+   "out": "1080p AMZN"
+  },
+  {
+   "in": "[HDT] Ayla 2017 Yerli Film 1080p.mp4",
+   "out": "1080p HDT"
+  },
+  {
+   "in": "Recep Ivedik 6 (2019) 1080p WEB-DL.mp4",
+   "out": "1080p WEB"
+  },
+  {
+   "in": "The Office US S09E23 Finale 720p.mkv",
+   "out": "720p"
+  },
+  {
+   "in": "Chernobyl.S01E01.1.23.45.1080p.AMZN.WEB-DL.mkv",
+   "out": "1080p AMZN"
+  },
+  {
+   "in": "Mammals - Memeli Canlilar -Karanlik- (2024) S01E02.mkv",
+   "out": "Surum"
+  },
+  {
+   "in": "Episode 07 Bir Zamanlar Cukurova.mp4",
+   "out": "Surum"
+  },
+  {
+   "in": "Cukurova E07 720p.mp4",
+   "out": "720p"
+  },
+  {
+   "in": "random_home_video_final.mp4",
+   "out": "Surum"
+  },
+  {
+   "in": "Shogun.2024.S01E10.A.Dream.of.a.Dream.1080p.DSNP.WEB-DL.DDP5.1.H.264-NTb.mkv",
+   "out": "1080p Disney+ NTb"
+  },
+  {
+   "in": "Arka Sokaklar 650. Bölüm.mp4",
+   "out": "Surum"
+  },
+  {
+   "in": "Masumlar Apartmani 2.Sezon 15.Bolum 1080p.mp4",
+   "out": "1080p"
+  },
+  {
+   "in": "Squid.Game.S02E07.MULTI.1080p.NF.WEB-DL.x265-KiNGS.mkv",
+   "out": "1080p NF HEVC DUAL KiNGS"
+  },
+  {
+   "in": "The.Matrix.1999.REMASTERED.1080p.BluRay.x265.mkv",
+   "out": "1080p BluRay HEVC"
+  },
+  {
+   "in": "Gladiator II 2024 TRSUB 1080p WEBRip.mp4",
+   "out": "1080p WEB Altyazili"
+  },
+  {
+   "in": "https://t.me/xyz/123 Ezel.S01E01.720p.mp4",
+   "out": "720p"
+  },
+  {
+   "in": "Leyla ile Mecnun 2.Sezon 5.Bolum - [archived by @kanal]-.mp4",
+   "out": "Surum"
+  },
+  {
+   "in": "Prestige 2006 1080p x264 Altyazili.mp4",
+   "out": "1080p Altyazili"
+  },
+  {
+   "in": "Sherlock.S04E03.The.Final.Problem.720p.mkv",
+   "out": "720p"
+  }
+ ],
+ "fold": [
+  {
+   "in": "Yalı Çapkını (2022)",
+   "out": "yalicapkini"
+  },
+  {
+   "in": "Şahsiyet [TR]",
+   "out": "sahsiyet"
+  },
+  {
+   "in": "Amélie & Nino",
+   "out": "amelieandnino"
+  },
+  {
+   "in": "İstanbul'un Gelinleri",
+   "out": "istanbulungelinleri"
+  },
+  {
+   "in": "Hababam Sınıfı!",
+   "out": "hababamsinifi"
+  }
+ ],
+ "candidates": [
+  {
+   "in": "Mammals - Memeli Canlılar (2024)",
+   "out": [
+    "Mammals - Memeli Canlılar",
+    "Mammals",
+    "Memeli Canlılar",
+    "Mammals - Memeli"
+   ],
+   "year": 2024
+  },
+  {
+   "in": "Netflix Dark",
+   "out": [
+    "Dark",
+    "Netflix Dark"
+   ],
+   "year": null
+  },
+  {
+   "in": "7 Toughest Days 7 Zorlu Gün Gabon",
+   "out": [
+    "7 Toughest Days 7 Zorlu Gün Gabon",
+    "7 Toughest Days 7 Zorlu",
+    "7 Toughest Days"
+   ],
+   "year": null
+  },
+  {
+   "in": "The Crown [DUAL] (2016-2023)",
+   "out": [
+    "The Crown"
+   ],
+   "year": 2016
+  },
+  {
+   "in": "BBC Earth Planet Earth III",
+   "out": [
+    "Planet Earth III",
+    "BBC Earth Planet Earth III"
+   ],
+   "year": null
+  },
+  {
+   "in": "Prime Suspect",
+   "out": [
+    "Prime Suspect"
+   ],
+   "year": null
+  }
+ ],
+ "ratio": [
+  {
+   "a": "The Last of Us",
+   "b": "The Last of Us",
+   "out": 1.0
+  },
+  {
+   "a": "Yali Capkini",
+   "b": "Yalı Çapkını",
+   "out": 1.0
+  },
+  {
+   "a": "Dark",
+   "b": "Darkness",
+   "out": 0.666667
+  },
+  {
+   "a": "Kurtlar Vadisi Pusu",
+   "b": "Kurtlar Vadisi",
+   "out": 0.848485
+  },
+  {
+   "a": "Breaking Bad",
+   "b": "Breaking Badly",
+   "out": 0.923077
+  },
+  {
+   "a": "abcd",
+   "b": "xyz",
+   "out": 0.0
+  },
+  {
+   "a": "Severance",
+   "b": "Severence",
+   "out": 0.888889
+  },
+  {
+   "a": "Muhtesem Yuzyil",
+   "b": "Muhteşem Yüzyıl: Kösem",
+   "out": 0.833333
+  }
+ ]
+}

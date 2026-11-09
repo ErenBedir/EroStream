@@ -1,0 +1,30 @@
+# Flutter / Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+.idea/
+.vscode/
+lib/l10n/gen/
+
+# Local secrets
+env.json
+*.keystore
+*.jks
+key.properties
+
+# TDLib binaries (downloaded by tool/fetch_tdlib.sh or CI)
+android/app/src/main/jniLibs/
+web/tdweb.js
+web/*.worker.js
+web/*.wasm
+web/*.mem
+third_party/tdlib/
+
+# OS
+.DS_Store
+Thumbs.db

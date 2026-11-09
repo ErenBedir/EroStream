@@ -1,0 +1,83 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter --version
+      - run: flutter pub get
+      - name: analyze
+        run: |
+          set +e
+          flutter analyze --no-fatal-infos --no-fatal-warnings > analyze.txt 2>&1
+          code=$?
+          cat analyze.txt
+          # surface issues as annotations: "  error • message • lib/a.dart:1:2 • code"
+          python3 - <<'PY'
+          import re
+          for line in open('analyze.txt', encoding='utf-8'):
+              m = re.match(r'\s*(error|warning|info)\s+•\s+(.*?)\s+•\s+(\S+?):(\d+):(\d+)\s+•\s+(\S+)', line)
+              if m:
+                  lvl = {'error': 'error', 'warning': 'warning', 'info': 'notice'}[m.group(1)]
+                  print(f"::{lvl} file={m.group(3)},line={m.group(4)},col={m.group(5)}::{m.group(6)}: {m.group(2)}")
+          PY
+          exit $code
+      - name: test
+        run: flutter test --reporter github
+      - name: build web
+        run: flutter build web --release --dart-define=APP_VERSION=ci-${{ github.run_number }}
+
+  android:
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+      - id: has
+        run: |
+          if [ -f android/app/build.gradle.kts ]; then echo "android=true" >> "$GITHUB_OUTPUT"; else echo "android=false" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.has.outputs.android == 'true'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - if: steps.has.outputs.android == 'true'
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - if: steps.has.outputs.android == 'true'
+        name: tdlib
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash tool/fetch_tdlib.sh android || echo "::warning::TDLib release not found, APK built without Telegram"
+      - if: steps.has.outputs.android == 'true'
+        name: env
+        env:
+          TG_API_ID: ${{ secrets.TG_API_ID }}
+          TG_API_HASH: ${{ secrets.TG_API_HASH }}
+          TMDB_KEY: ${{ secrets.TMDB_KEY }}
+        run: |
+          python3 -c "import json,os; json.dump({'TG_API_ID': int(os.environ.get('TG_API_ID') or 0), 'TG_API_HASH': os.environ.get('TG_API_HASH',''), 'TMDB_KEY': os.environ.get('TMDB_KEY','')}, open('env.json','w'))"
+      - if: steps.has.outputs.android == 'true'
+        run: flutter build apk --debug --split-per-abi --dart-define-from-file=env.json --dart-define=APP_VERSION=ci-${{ github.run_number }}
+      - if: steps.has.outputs.android == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk-debug
+          path: build/app/outputs/flutter-apk/*.apk
+          retention-days: 14

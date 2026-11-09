@@ -1,0 +1,4 @@
+# TDLib build used by the app. tdlib.yml publishes it as a GitHub release with this tag.
+TDLIB_VERSION=1.8.70
+TDLIB_COMMIT=c8828d50f5eac2fc7089ce1089d7ce9095c61b5e
+TDLIB_TAG=tdlib-1.8.70-c8828d5

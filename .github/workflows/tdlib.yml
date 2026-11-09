@@ -1,0 +1,96 @@
+name: tdlib
+
+# Builds TDLib (JSON interface) from the commit in tool/tdlib.lock and publishes
+# the binaries as a release. Slow (30-90 min); run only when the lock changes.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [tool/tdlib.lock]
+
+permissions:
+  contents: write
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: lock
+        run: grep -v '^#' tool/tdlib.lock >> "$GITHUB_ENV"
+      - name: build (official Dockerfile)
+        run: |
+          git clone --filter=blob:none https://github.com/tdlib/td.git td
+          cd td/example/android
+          docker build --build-arg TDLIB_INTERFACE=JSON --build-arg COMMIT_HASH="$TDLIB_COMMIT" --output out .
+          ls -la out
+      - name: package
+        run: |
+          mkdir -p pkg && cd pkg
+          unzip -q ../td/example/android/out/tdlib.zip
+          find . -name 'libtdjson.so' | sort
+          mkdir -p jniLibs
+          for so in $(find . -path '*libs/*/libtdjson.so'); do
+            abi=$(basename "$(dirname "$so")")
+            mkdir -p "jniLibs/$abi" && cp "$so" "jniLibs/$abi/"
+          done
+          tar -czf ../tdlib-android.tar.gz jniLibs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tdlib-android
+          path: tdlib-android.tar.gz
+
+  web:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: lock
+        run: grep -v '^#' tool/tdlib.lock >> "$GITHUB_ENV"
+      - run: sudo apt-get update && sudo apt-get install -y gperf cmake make g++ wget tar sed
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+      - name: emsdk 3.1.1
+        run: |
+          git clone https://github.com/emscripten-core/emsdk.git "$HOME/emsdk"
+          cd "$HOME/emsdk" && ./emsdk install 3.1.1 && ./emsdk activate 3.1.1
+      - name: build tdweb
+        run: |
+          source "$HOME/emsdk/emsdk_env.sh"
+          git clone https://github.com/tdlib/td.git td
+          cd td && git checkout "$TDLIB_COMMIT"
+          cd example/web
+          ./build-openssl.sh
+          ./build-tdlib.sh
+          ./copy-tdlib.sh
+          ./build-tdweb.sh
+          ls -la tdweb/dist
+      - name: package
+        run: tar -czf tdlib-web.tar.gz -C td/example/web/tdweb/dist .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tdlib-web
+          path: tdlib-web.tar.gz
+
+  release:
+    needs: [android, web]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: lock
+        run: grep -v '^#' tool/tdlib.lock >> "$GITHUB_ENV"
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ls -la dist
+          (cd dist && sha256sum *.tar.gz > SHA256SUMS)
+          gh release delete "$TDLIB_TAG" --yes --cleanup-tag 2>/dev/null || true
+          gh release create "$TDLIB_TAG" dist/* \
+            --title "TDLib $TDLIB_VERSION (${TDLIB_COMMIT:0:7})" \
+            --notes "TDLib $TDLIB_VERSION, commit tdlib/td@$TDLIB_COMMIT, JSON interface. Built by tdlib.yml." \
+            --prerelease

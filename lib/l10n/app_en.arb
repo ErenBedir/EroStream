@@ -1,0 +1,146 @@
+{
+  "@@locale": "en",
+  "languageName": "English",
+  "appTitle": "EroStream",
+  "welcomeTitle": "Your media, your sources.",
+  "welcomeBody": "Connect Telegram to add channels and topics, or start with files on this device.",
+  "loginWithTelegram": "Sign in with Telegram",
+  "skipForNow": "Local files only",
+  "loginPhoneTitle": "Sign in with your phone number",
+  "phoneHint": "+90 5xx xxx xx xx",
+  "continueAction": "Continue",
+  "loginWithQr": "Sign in with QR code",
+  "qrInstructions": "On your phone open Telegram > Settings > Devices > Link Desktop Device and scan this code.",
+  "usePhoneInstead": "Use phone number instead",
+  "codeTitle": "Enter the code",
+  "codeSentTo": "Telegram sent a code to {phone}.",
+  "@codeSentTo": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "codeLabel": "Code",
+  "passwordTitle": "Two-step verification",
+  "passwordHintText": "Hint: {hint}",
+  "@passwordHintText": {
+    "placeholders": {
+      "hint": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordLabel": "Password",
+  "unsupportedAuth": "This account has to finish sign-up in the official Telegram app first.",
+  "telegramUnavailable": "Telegram is not available in this build.",
+  "credentialsTitle": "Telegram API credentials",
+  "credentialsBody": "This build has no Telegram API ID. Create one at my.telegram.org and enter it here.",
+  "apiId": "API ID",
+  "apiHash": "API hash",
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "create": "Create",
+  "retry": "Retry",
+  "back": "Back",
+  "loading": "Loading…",
+  "errorText": "Error: {message}",
+  "@errorText": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "homeEmptyTitle": "No libraries yet",
+  "homeEmptyBody": "Create a library and add folders or Telegram channels to it.",
+  "addLibrary": "Add library",
+  "editLibrary": "Edit library",
+  "deleteLibraryConfirm": "Delete \"{name}\"? Files and Telegram messages are not touched.",
+  "@deleteLibraryConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "libraryName": "Name",
+  "libraryNameHint": "Movies, Series, Documentaries…",
+  "libraryKind": "Content",
+  "kindMovies": "Movies",
+  "kindShows": "Series",
+  "kindMixed": "Mixed",
+  "sources": "Sources",
+  "addSource": "Add source",
+  "noSources": "No sources yet.",
+  "sourceLocal": "Folder on this device",
+  "sourceTelegram": "Telegram channel or group",
+  "comingSoon": "Coming soon",
+  "signInFirst": "Sign in with Telegram first.",
+  "pickChat": "Choose a channel or group",
+  "searchChats": "Search, or paste @username / t.me link",
+  "channel": "Channel",
+  "group": "Group",
+  "forumGroup": "Group with topics",
+  "topicRules": "Topics",
+  "topicRulesHint": "Topic title is used as the series name. Change it per topic if needed.",
+  "topicsCount": "{count, plural, =1{1 topic} other{{count} topics}}",
+  "@topicsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "topicModeAuto": "Auto",
+  "topicModeTv": "Series",
+  "topicModeMovie": "Movies",
+  "topicModeFromName": "From file name",
+  "topicModeSkip": "Skip",
+  "nothingScanned": "Nothing scanned yet.",
+  "settings": "Settings",
+  "language": "Language",
+  "systemLanguage": "System",
+  "account": "Telegram account",
+  "signedInAs": "Signed in as {name}",
+  "@signedInAs": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notSignedIn": "Not signed in",
+  "signIn": "Sign in",
+  "signOut": "Sign out",
+  "signOutConfirm": "Sign out of Telegram on this device?",
+  "metadata": "Metadata",
+  "tmdbKey": "TMDB API key",
+  "tmdbKeyHelp": "Empty = built-in key. v3 key or v4 read access token.",
+  "metadataLanguage": "Metadata language",
+  "metadataLanguageHelp": "Empty = app language. Example: tr-TR, en-US",
+  "storage": "Storage",
+  "cacheLimit": "Telegram cache limit",
+  "megabytes": "{value} MB",
+  "@megabytes": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "about": "About",
+  "versionText": "Version {version}",
+  "@versionText": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "tmdbNotice": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
+  "sourceCode": "Source code",
+  "home": "Home",
+  "libraries": "Libraries"
+}
