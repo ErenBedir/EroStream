@@ -39,6 +39,8 @@ jobs:
           exit $code
       - name: test
         run: flutter test --reporter github
+      - name: tdweb
+        run: bash tool/fetch_tdlib.sh web || echo "::warning::tdweb release not found, web built without Telegram"
       - name: build web
         run: flutter build web --release --dart-define=APP_VERSION=ci-${{ github.run_number }}
 
