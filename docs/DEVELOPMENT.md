@@ -79,3 +79,12 @@ flutter build web --release --dart-define-from-file=env.json
 ```
 
 CI reads `TG_API_ID`, `TG_API_HASH`, `TMDB_KEY` from repository secrets.
+
+## Publishing a release
+
+1. Bump `version:` in `pubspec.yaml`, update `docs/release-notes.md`, merge to `main`.
+2. `git push origin main:release`
+3. The `release` workflow builds split APKs + web zip and publishes `v<version>`.
+
+Signing secrets (optional, without them APKs use the CI debug key and can't be updated in place):
+`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`.

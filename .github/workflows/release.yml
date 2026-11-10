@@ -1,28 +1,32 @@
 name: release
 
-# Push a tag like v0.1.0 (or run manually with a tag) to build and publish a release.
+# Push to the `release` branch (or run manually) to publish the version in pubspec.yaml.
+# The workflow creates the tag v<version>; an existing release with that tag fails the run.
 on:
   push:
-    tags: ['v*']
+    branches: [release]
   workflow_dispatch:
-    inputs:
-      tag:
-        description: Tag to release (e.g. v0.1.0)
-        required: true
 
 permissions:
   contents: write
 
-env:
-  TAG: ${{ inputs.tag || github.ref_name }}
-
 jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.v.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: v
+        run: echo "tag=v$(grep -E '^version:' pubspec.yaml | sed -E 's/version: *([^+ ]+).*/\1/')" >> "$GITHUB_OUTPUT"
+
   android:
+    needs: version
+    env:
+      TAG: ${{ needs.version.outputs.tag }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ env.TAG }}
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -69,11 +73,12 @@ jobs:
           path: dist/*
 
   web:
+    needs: version
+    env:
+      TAG: ${{ needs.version.outputs.tag }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ env.TAG }}
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
@@ -92,7 +97,9 @@ jobs:
           path: dist/*
 
   publish:
-    needs: [android, web]
+    needs: [version, android, web]
+    env:
+      TAG: ${{ needs.version.outputs.tag }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -107,4 +114,4 @@ jobs:
           (cd dist && sha256sum * > SHA256SUMS)
           pre=""
           case "$TAG" in v0.*|*-*) pre="--prerelease" ;; esac
-          gh release create "$TAG" dist/* --title "EroStream ${TAG#v}" --notes-file docs/release-notes.md $pre --verify-tag
+          gh release create "$TAG" dist/* --title "EroStream ${TAG#v}" --notes-file docs/release-notes.md $pre --target "$GITHUB_SHA"
