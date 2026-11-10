@@ -61,6 +61,10 @@ flutter run -d chrome --dart-define-from-file=env.json
 
 Without tdweb files in `web/` the app runs, Telegram shows as unavailable.
 
+Released web build on Windows without any tooling: run `tool/windows/install-web.bat`.
+It installs the latest `*-web.zip` into `%LOCALAPPDATA%\EroStream`, adds shortcuts and serves it on
+`http://localhost:8787/` with a small PowerShell server. `-Uninstall` removes it.
+
 ## Checks
 
 ```sh

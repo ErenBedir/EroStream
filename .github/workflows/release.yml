@@ -113,6 +113,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          cp tool/windows/install-web.bat tool/windows/install-web.ps1 dist/
           (cd dist && sha256sum * > SHA256SUMS)
           pre=""
           case "$TAG" in v0.*|*-*) pre="--prerelease" ;; esac

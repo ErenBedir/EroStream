@@ -22,6 +22,7 @@ First public build. Early development: expect rough edges.
 | `EroStream-<version>-armeabi-v7a.apk` | older / 32-bit devices |
 | `EroStream-<version>-x86_64.apk` | emulators |
 | `EroStream-<version>-web.zip` | static web build, serve from any web server |
+| `install-web.bat` | Windows: installs the web build with shortcuts and a local server |
 
 Telegram API ID / hash: enter in Settings if the build asks for it (my.telegram.org).
 Posters need a TMDB key (Settings → TMDB API key).
