@@ -1,7 +1,8 @@
 import 'package:erostream/app.dart';
 import 'package:erostream/core/scope.dart';
 import 'package:erostream/core/settings.dart';
-import 'package:erostream/library/library_repository.dart';
+import 'package:erostream/library/media_store.dart';
+import 'package:erostream/library/store_backend.dart';
 import 'package:erostream/telegram/telegram_service.dart';
 import 'package:erostream/telegram/transport/td_transport_stub.dart' as stub;
 import 'package:flutter/material.dart';
@@ -11,11 +12,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<Services> _services(Map<String, Object> prefs) async {
   SharedPreferences.setMockInitialValues(prefs);
   final settings = await Settings.load();
-  return Services(
-    settings: settings,
+  return Services.create(
+    settings,
     telegram: TelegramService(settings, transportFactory: stub.createTransport),
-    libraries: LibraryRepository(settings),
+    store: MediaStore(backend: _MemoryBackend()),
   );
+}
+
+class _MemoryBackend implements StoreBackend {
+  String? data;
+
+  @override
+  Future<String?> read() async => data;
+
+  @override
+  Future<void> write(String d) async => data = d;
 }
 
 void main() {
@@ -46,6 +57,6 @@ void main() {
     await tester.tap(find.text('Create'));
     await tester.pumpAndSettle();
     expect(s.libraries.libraries.single.name, 'Series');
-    expect(find.text('Nothing scanned yet.'), findsOneWidget);
+    expect(find.text('Sign in with Telegram to scan your channels.'), findsOneWidget);
   });
 }
