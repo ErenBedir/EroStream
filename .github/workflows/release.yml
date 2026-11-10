@@ -1,0 +1,110 @@
+name: release
+
+# Push a tag like v0.1.0 (or run manually with a tag) to build and publish a release.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag to release (e.g. v0.1.0)
+        required: true
+
+permissions:
+  contents: write
+
+env:
+  TAG: ${{ inputs.tag || github.ref_name }}
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: bash tool/fetch_tdlib.sh android
+      - name: env
+        env:
+          TG_API_ID: ${{ secrets.TG_API_ID }}
+          TG_API_HASH: ${{ secrets.TG_API_HASH }}
+          TMDB_KEY: ${{ secrets.TMDB_KEY }}
+        run: |
+          python3 -c "import json,os; json.dump({'TG_API_ID': int(os.environ.get('TG_API_ID') or 0), 'TG_API_HASH': os.environ.get('TG_API_HASH',''), 'TMDB_KEY': os.environ.get('TMDB_KEY','')}, open('env.json','w'))"
+      - name: signing
+        env:
+          KEYSTORE: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE" ]; then
+            echo "::warning::ANDROID_KEYSTORE_BASE64 not set, APKs are signed with the CI debug key"
+            exit 0
+          fi
+          echo "$KEYSTORE" | base64 -d > android/app/release.jks
+          printf 'storeFile=release.jks\nstorePassword=%s\nkeyAlias=%s\nkeyPassword=%s\n' \
+            "$STORE_PASSWORD" "$KEY_ALIAS" "${KEY_PASSWORD:-$STORE_PASSWORD}" > android/key.properties
+      - name: build
+        run: |
+          v="${TAG#v}"
+          flutter build apk --release --split-per-abi --dart-define-from-file=env.json --dart-define=APP_VERSION="$v"
+          mkdir -p dist
+          for f in build/app/outputs/flutter-apk/app-*-release.apk; do
+            abi=$(basename "$f" | sed -E 's/app-(.*)-release.apk/\1/')
+            cp "$f" "dist/EroStream-$v-$abi.apk"
+          done
+          ls -la dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android
+          path: dist/*
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: bash tool/fetch_tdlib.sh web
+      - name: build
+        run: |
+          v="${TAG#v}"
+          # No API keys in the public web bundle; users enter their own in Settings.
+          flutter build web --release --dart-define=APP_VERSION="$v"
+          mkdir -p dist
+          (cd build/web && zip -qr "../../dist/EroStream-$v-web.zip" .)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web
+          path: dist/*
+
+  publish:
+    needs: [android, web]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          (cd dist && sha256sum * > SHA256SUMS)
+          pre=""
+          case "$TAG" in v0.*|*-*) pre="--prerelease" ;; esac
+          gh release create "$TAG" dist/* --title "EroStream ${TAG#v}" --notes-file docs/release-notes.md $pre --verify-tag
