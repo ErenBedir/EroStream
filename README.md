@@ -3,7 +3,7 @@
 Media library and player for files on your device and Telegram channels / topic groups.
 No server. Everything runs on the device: your Telegram account, your storage, your bandwidth.
 
-> Status: early development (M1). Sign-in, libraries and source setup work; scanning and playback are next.
+> Status: early development (M2). Sign-in, Telegram scanning, TMDB matching and native playback work; web playback and local folders are next.
 > See [docs/PLAN.md](docs/PLAN.md).
 
 ## What it does

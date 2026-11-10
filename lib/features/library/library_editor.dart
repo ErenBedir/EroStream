@@ -35,17 +35,43 @@ class _LibraryEditorState extends State<LibraryEditor> {
   Future<void> _save() async {
     final name = _name.text.trim();
     if (name.isEmpty) return;
-    final repo = context.services.libraries;
-    final lib = (widget.initial ?? MediaLibrary(id: LibraryRepository.newId(), name: name, kind: _kind))
-        .copyWith(name: name, kind: _kind, sources: _sources);
-    await repo.upsert(lib);
+    final s = context.services;
+    final lang = Localizations.localeOf(context).languageCode;
+    final base = widget.initial ?? MediaLibrary(id: LibraryRepository.newId(), name: name, kind: _kind);
+    final before = {for (final x in widget.initial?.sources ?? const <SourceConfig>[]) x.key: x};
+    final sources = <SourceConfig>[];
+    for (final src in _sources) {
+      final old = before[src.key];
+      // Topic rules changed: index this source again from scratch.
+      if (src is TelegramSource && old is TelegramSource && !_sameRules(src, old)) {
+        s.store.removeSource(base.id, src.key);
+        sources.add(src.copyWith(lastMessageId: 0));
+      } else {
+        sources.add(src);
+      }
+    }
+    for (final k in before.keys) {
+      if (!_sources.any((x) => x.key == k)) s.store.removeSource(base.id, k);
+    }
+    await s.libraries.upsert(base.copyWith(name: name, kind: _kind, sources: sources));
+    s.sync.syncAll(uiLanguage: lang);
     if (mounted) Navigator.of(context).pop();
+  }
+
+  static bool _sameRules(TelegramSource a, TelegramSource b) {
+    if (a.topics.length != b.topics.length) return false;
+    for (final e in a.topics.entries) {
+      final o = b.topics[e.key];
+      if (o == null || o.mode != e.value.mode || o.name != e.value.name) return false;
+    }
+    return true;
   }
 
   Future<void> _delete() async {
     final l = L.of(context);
     final ok = await confirm(context, l.deleteLibraryConfirm(widget.initial!.name), yes: l.delete, no: l.cancel);
     if (!ok || !mounted) return;
+    context.services.store.removeLibrary(widget.initial!.id);
     await context.services.libraries.remove(widget.initial!.id);
     if (mounted) Navigator.of(context).pop();
   }

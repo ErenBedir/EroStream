@@ -98,7 +98,6 @@
   "topicModeMovie": "Movies",
   "topicModeFromName": "From file name",
   "topicModeSkip": "Skip",
-  "nothingScanned": "Nothing scanned yet.",
   "settings": "Settings",
   "language": "Language",
   "systemLanguage": "System",
@@ -142,5 +141,102 @@
   "tmdbNotice": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
   "sourceCode": "Source code",
   "home": "Home",
-  "libraries": "Libraries"
+  "libraries": "Libraries",
+  "play": "Play",
+  "resume": "Resume",
+  "startOver": "Start over",
+  "details": "Details",
+  "continueWatching": "Continue watching",
+  "recentlyAdded": "Recently added · {library}",
+  "@recentlyAdded": {
+    "placeholders": {
+      "library": {
+        "type": "String"
+      }
+    }
+  },
+  "seeAll": "See all",
+  "refresh": "Refresh",
+  "scanning": "Scanning {what}",
+  "@scanning": {
+    "placeholders": {
+      "what": {
+        "type": "String"
+      }
+    }
+  },
+  "signInToScan": "Sign in with Telegram to scan your channels.",
+  "noVideosFound": "No videos found in these sources yet.",
+  "seasonN": "Season {n}",
+  "@seasonN": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "episodeCode": "S{season} · E{episode}",
+  "@episodeCode": {
+    "placeholders": {
+      "season": {
+        "type": "int"
+      },
+      "episode": {
+        "type": "int"
+      }
+    }
+  },
+  "episodeN": "Episode {n}",
+  "@episodeN": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "series": "Series",
+  "movie": "Movie",
+  "episodesCount": "{count, plural, =1{1 episode} other{{count} episodes}}",
+  "@episodesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "versionsCount": "{count, plural, =1{1 version} other{{count} versions}}",
+  "@versionsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "versions": "Versions",
+  "fixMatch": "Fix match",
+  "searchTmdb": "Search TMDB",
+  "needsReview": "Needs a match",
+  "matchReview": "Check matches",
+  "noResults": "No results.",
+  "tmdbMissing": "Add a TMDB key in Settings to get posters and details.",
+  "audio": "Audio",
+  "subtitles": "Subtitles",
+  "off": "Off",
+  "upNextIn": "Up next in {seconds}",
+  "@upNextIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "playbackUnsupported": "This file can't be played on this platform yet.",
+  "minutes": "{n} min",
+  "@minutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  }
 }
