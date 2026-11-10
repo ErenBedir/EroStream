@@ -18,7 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: v
-        run: echo "tag=v$(grep -E '^version:' pubspec.yaml | sed -E 's/version: *([^+ ]+).*/\1/')" >> "$GITHUB_OUTPUT"
+        run: |
+          v=$(grep -E '^version:' pubspec.yaml | sed -E 's/version: *([^+ ]+).*/\1/')
+          echo "tag=v$v" >> "$GITHUB_OUTPUT"
 
   android:
     needs: version
